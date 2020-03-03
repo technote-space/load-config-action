@@ -9,18 +9,24 @@ inputs:
   GITHUB_TOKEN:
     description: Secret GitHub API token to use for making API requests.
     required: true
-
-#outputs:
-#  result:
-#    description: action result
+  CONFIG_FILENAME:
+    description: Config file name.
+    required: true
+  PREFIX:
+    description: Prefix
+    required: false
+  SUFFIX:
+    description: Suffix
+    required: false
+  RELATIVE_PATH:
+    description: Relative path
+    default: '.github'
+    required: true
 
 branding:
-  # https://feathericons.com/
   icon: 'package'
   color: 'orange'
 
 runs:
   using: node12
   main: lib/main.js
-#  post: lib/post.js
-#  post-if: 'success()'
