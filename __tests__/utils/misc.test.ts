@@ -1,57 +1,44 @@
-import { isTargetEvent } from '@technote-space/filter-github-action';
-import { getContext, testEnv } from '@technote-space/github-action-test-helper';
-import { getPayload } from '../../src/utils/misc';
-import { TARGET_EVENTS } from '../../src/constant';
+import { resolve } from 'path';
+import { testEnv, spyOnStdout, stdoutCalledWith } from '@technote-space/github-action-test-helper';
+import { getConfigFilename, getRelativePath, setEnv } from '../../src/utils/misc';
 
-describe('isTargetEvent', () => {
-	testEnv();
+const rootDir = resolve(__dirname, '../..');
 
-	it('should return true 1', () => {
-		expect(isTargetEvent(TARGET_EVENTS, getContext({
-			payload: {
-				action: 'opened',
-			},
-			eventName: 'pull_request',
-		}))).toBe(true);
+describe('getConfigFilename', () => {
+	testEnv(rootDir);
+
+	it('should throw error', () => {
+		expect(() => getConfigFilename()).toThrow('');
 	});
 
-	it('should return true 2', () => {
-		process.env.INPUT_IGNORE_CONTEXT_CHECK = 'true';
-		expect(isTargetEvent(TARGET_EVENTS, getContext({
-			payload: {
-				action: 'opened',
-			},
-			eventName: 'push',
-		}))).toBe(true);
-	});
+	it('should get config file name', () => {
+		process.env.INPUT_CONFIG_FILENAME = 'test.yml';
 
-	it('should return false 1', () => {
-		expect(isTargetEvent(TARGET_EVENTS, getContext({
-			payload: {
-				action: 'opened',
-			},
-			eventName: 'push',
-		}))).toBe(false);
-	});
-
-	it('should return false 2', () => {
-		expect(isTargetEvent(TARGET_EVENTS, getContext({
-			payload: {
-				action: 'closed',
-			},
-			eventName: 'pull_request',
-		}))).toBe(false);
+		expect(getConfigFilename()).toBe('test.yml');
 	});
 });
 
-describe('getPayload', () => {
-	it('should get payload', () => {
-		expect(getPayload(getContext({
-			payload: {
-				'test': 123,
-			},
-		}))).toEqual({
-			'test': 123,
-		});
+describe('getRelativePath', () => {
+	testEnv(rootDir);
+
+	it('should throw error', () => {
+		process.env.INPUT_RELATIVE_PATH = '';
+		expect(() => getRelativePath()).toThrow('');
+	});
+
+	it('should get config file name', () => {
+		expect(getRelativePath()).toBe('.github');
+	});
+});
+
+describe('setEnv', () => {
+	it('should run set env command', () => {
+		const mockStdout = spyOnStdout();
+
+		setEnv('test-name', 'test-value');
+
+		stdoutCalledWith(mockStdout, [
+			'::set-env name=test-name::test-value',
+		]);
 	});
 });

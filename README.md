@@ -14,19 +14,50 @@ GitHub Actions to load config.
 <details>
 <summary>Details</summary>
 
-- [Setup](#setup)
-  - [yarn](#yarn)
-  - [npm](#npm)
+- [Usage](#usage)
 - [Author](#author)
 
 </details>
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Setup
-### yarn
-- `yarn setup`
-### npm
-- `npm run setup`
+## Usage
+e.g. `test.yml`  
+```yaml
+on: push
+name: Example
+jobs:
+  triage:
+    name: Load config example
+    runs-on: ubuntu-latest
+    steps:
+      - uses: technote-space/load-config-action@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CONFIG_FILENAME: config.yml
+      - name: Dump
+        run: |
+          echo ${{ env.test1 }}
+          echo ${{ env.test2 }}
+          echo ${{ env.test3 }}
+```
+
+`.github/config.yml`
+```yaml
+test1: test1
+test2:
+  - test1
+  - test2
+test3:
+  test4: test5
+```
+
+result:
+
+```
+test1
+[test1,test2]
+{test4:test5}
+```
 
 ## Author
 [GitHub (Technote)](https://github.com/technote-space)  

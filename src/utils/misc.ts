@@ -1,4 +1,13 @@
-import { Context } from '@actions/github/lib/context';
-import { WebhookPayload } from '@actions/github/lib/interfaces';
+import { getInput, exportVariable } from '@actions/core' ;
 
-export const getPayload = (context: Context): WebhookPayload => context.payload;
+export const getConfigFilename = (): string => getInput('CONFIG_FILENAME', {required: true});
+
+export const getRelativePath = (): string => getInput('RELATIVE_PATH', {required: true});
+
+export const getPrefix = (): string => getInput('PREFIX');
+
+export const getSuffix = (): string => getInput('SUFFIX');
+
+export const getEnvName = (name: string): string => `${getPrefix()}${name}${getSuffix()}`;
+
+export const setEnv = (name: string, value: string): void => exportVariable(getEnvName(name), value);
