@@ -1,6 +1,6 @@
 {
   "name": "@technote-space/load-config-action",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "GitHub Actions to load config.",
   "author": {
     "name": "Technote",
