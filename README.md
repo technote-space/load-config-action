@@ -14,9 +14,7 @@ GitHub Actions to load config.
 <details>
 <summary>Details</summary>
 
-- [Setup](#setup)
-  - [yarn](#yarn)
-  - [npm](#npm)
+- [Usage](#usage)
 - [Author](#author)
 
 </details>
@@ -43,22 +41,22 @@ jobs:
           echo ${{ env.test3 }}
 ```
 
-`config.yml`
+`.github/config.yml`
 ```yaml
 test1: test1
 test2:
   - test1
   - test2
 test3:
-  TEST4: test5
+  test4: test5
 ```
 
 result:
 
 ```
-"test1" 
-["test1", "test2"]
-{test4: "test5"}
+test1
+[test1,test2]
+{test4:test5}
 ```
 
 ## Author
