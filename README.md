@@ -14,9 +14,7 @@ GitHub Actions to load config.
 <details>
 <summary>Details</summary>
 
-- [Setup](#setup)
-  - [yarn](#yarn)
-  - [npm](#npm)
+- [Usage](#usage)
 - [Author](#author)
 
 </details>
