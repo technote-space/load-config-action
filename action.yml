@@ -1,0 +1,32 @@
+# https://help.github.com/ja/articles/metadata-syntax-for-github-actions
+name: Load Config Action
+
+description: GitHub Actions to load config.
+
+author: technote-space
+
+inputs:
+  GITHUB_TOKEN:
+    description: Secret GitHub API token to use for making API requests.
+    required: true
+  CONFIG_FILENAME:
+    description: Config file name.
+    required: true
+  PREFIX:
+    description: Prefix
+    required: false
+  SUFFIX:
+    description: Suffix
+    required: false
+  RELATIVE_PATH:
+    description: Relative path
+    default: '.github'
+    required: true
+
+branding:
+  icon: 'package'
+  color: 'orange'
+
+runs:
+  using: node12
+  main: lib/main.js
