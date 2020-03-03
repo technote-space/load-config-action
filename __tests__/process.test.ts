@@ -72,22 +72,19 @@ describe('execute', () => {
 		stdoutCalledWith(mockStdout, [
 			'::group::Target config: ',
 			getLogStdout({
-				'test1': 1,
-				'test2': 2,
-				'test3': [
-					1,
-					2,
-					3,
+				'test1': 'test1',
+				'test2': [
+					'test1',
+					'test2',
 				],
-				'test4': {
-					'test5': 5,
+				'test3': {
+					'test4': 'test5',
 				},
 			}),
 			'::endgroup::',
-			'::set-env name=INPUT_test1::1',
-			'::set-env name=INPUT_test2::2',
-			'::set-env name=INPUT_test3::[1,2,3]',
-			'::set-env name=INPUT_test4::{"test5":5}',
+			'::set-env name=INPUT_test1::"test1"',
+			'::set-env name=INPUT_test2::["test1","test2"]',
+			'::set-env name=INPUT_test3::{"test4":"test5"}',
 		]);
 	});
 });
