@@ -58,6 +58,7 @@ describe('execute', () => {
 
 	it('should set env', async() => {
 		process.env.INPUT_CONFIG_FILENAME = 'config.yml';
+		process.env.INPUT_PREFIX          = 'INPUT_';
 		const mockStdout                  = spyOnStdout();
 		nock('https://api.github.com')
 			.get('/repos/hello/world/contents/.github/config.yml')
@@ -83,10 +84,10 @@ describe('execute', () => {
 				},
 			}),
 			'::endgroup::',
-			'::set-env name=test1::1',
-			'::set-env name=test2::2',
-			'::set-env name=test3::[1,2,3]',
-			'::set-env name=test4::{"test5":5}',
+			'::set-env name=INPUT_test1::1',
+			'::set-env name=INPUT_test2::2',
+			'::set-env name=INPUT_test3::[1,2,3]',
+			'::set-env name=INPUT_test4::{"test5":5}',
 		]);
 	});
 });
