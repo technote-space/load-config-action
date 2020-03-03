@@ -1,4 +1,3 @@
-# https://help.github.com/ja/articles/metadata-syntax-for-github-actions
 name: Load Config Action
 
 description: GitHub Actions to load config.
@@ -24,8 +23,8 @@ inputs:
     required: true
 
 branding:
-  icon: 'package'
-  color: 'orange'
+  icon: 'settings'
+  color: 'gray-dark'
 
 runs:
   using: node12
