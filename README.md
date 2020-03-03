@@ -54,9 +54,9 @@ test3:
 result:
 
 ```
-"test1" 
-["test1", "test2"]
-{test4: "test5"}
+test1
+[test1,test2]
+{test4:test5}
 ```
 
 ## Author
