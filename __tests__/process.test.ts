@@ -87,9 +87,10 @@ describe('execute', () => {
 	it('should set env by json', async() => {
 		process.env.INPUT_CONFIG_FILENAME = 'config.json';
 		process.env.INPUT_SUFFIX          = '_SUFFIX';
+		process.env.INPUT_REF             = 'v1.2.3';
 		const mockStdout                  = spyOnStdout();
 		nock('https://api.github.com')
-			.get('/repos/hello/world/contents/.github/config.json')
+			.get('/repos/hello/world/contents/.github/config.json?ref=v1.2.3')
 			.reply(200, getConfigFixture(fixturesDir, 'config.json'));
 
 		await execute(new Logger(), getOctokit(), generateContext({
