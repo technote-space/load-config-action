@@ -611,10 +611,10 @@
     "@actions/core" "^1.2.3"
     "@actions/github" "^2.1.1"
 
-"@technote-space/github-action-config-helper@^0.1.10":
-  version "0.1.10"
-  resolved "https://registry.yarnpkg.com/@technote-space/github-action-config-helper/-/github-action-config-helper-0.1.10.tgz#81b44e4d9f207d49d226e452e9b87d51d12244c5"
-  integrity sha512-E0EkrDFcI94sSAEsyzDowO79GaR4S4m7rd9gso9ZeCFDC4UHHm5TWuFH9JVjgYo5B1yIR6wAKPLPn9M/dZpWBQ==
+"@technote-space/github-action-config-helper@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@technote-space/github-action-config-helper/-/github-action-config-helper-1.0.0.tgz#e152f23d020daded8f2d983c8336e773ce124825"
+  integrity sha512-ABH0trzxvDPHD/Yllq5sT3RkAcc0UO1cxPPqrNWbyCBhjHn3uIvofrppRDZ8zgGq0V9SgvQV3KsmruTBRgFA+w==
   dependencies:
     "@actions/github" "^2.1.1"
     js-yaml "^3.13.1"
@@ -3637,10 +3637,10 @@ nice-try@^1.0.4:
   resolved "https://registry.yarnpkg.com/nice-try/-/nice-try-1.0.5.tgz#a3378a7696ce7d223e88fc9b764bd7ef1089e366"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
-nock@^12.0.2:
-  version "12.0.2"
-  resolved "https://registry.yarnpkg.com/nock/-/nock-12.0.2.tgz#47617b34738e026b29d2294b4579e35b27e6a4d3"
-  integrity sha512-pTckyfP8QHvwXP/oX+zQuSIL3S/mWTd84ba4pOGZlS/FgRZyljv4C3ZyOjgMilvkydSaERML/aJEF13EBUuDTQ==
+nock@^12.0.3:
+  version "12.0.3"
+  resolved "https://registry.yarnpkg.com/nock/-/nock-12.0.3.tgz#83f25076dbc4c9aa82b5cdf54c9604c7a778d1c9"
+  integrity sha512-QNb/j8kbFnKCiyqi9C5DD0jH/FubFGj5rt9NQFONXwQm3IPB0CULECg/eS3AU1KgZb/6SwUa4/DTRKhVxkGABw==
   dependencies:
     debug "^4.1.0"
     json-stringify-safe "^5.0.1"
