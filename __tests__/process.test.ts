@@ -23,9 +23,10 @@ describe('execute', () => {
 
 	it('should not set env', async() => {
 		process.env.INPUT_CONFIG_FILENAME = 'error.yml';
+		process.env.INPUT_REF             = 'refs/heads/master';
 		const mockStdout                  = spyOnStdout();
 		nock('https://api.github.com')
-			.get('/repos/hello/world/contents/.github/error.yml')
+			.get('/repos/hello/world/contents/.github/error.yml?ref=refs%2Fheads%2Fmaster')
 			.reply(200, getConfigFixture(fixturesDir, 'error.yml'));
 
 		await execute(new Logger(), getOctokit(), generateContext({
@@ -55,9 +56,10 @@ describe('execute', () => {
 	it('should set env by yaml', async() => {
 		process.env.INPUT_CONFIG_FILENAME = 'config.yml';
 		process.env.INPUT_PREFIX          = 'INPUT_';
+		process.env.INPUT_REF             = 'refs/pull/123/merge';
 		const mockStdout                  = spyOnStdout();
 		nock('https://api.github.com')
-			.get('/repos/hello/world/contents/.github/config.yml')
+			.get('/repos/hello/world/contents/.github/config.yml?ref=refs%2Fpull%2F123%2Fmerge')
 			.reply(200, getConfigFixture(fixturesDir, 'config.yml'));
 
 		await execute(new Logger(), getOctokit(), generateContext({
