@@ -6,11 +6,11 @@ author: technote-space
 
 inputs:
   GITHUB_TOKEN:
-    description: Secret GitHub API token to use for making API requests.
+    description: Secret GitHub API token to use for making API requests
     default: ${{ github.token }}
     required: true
   CONFIG_FILENAME:
-    description: Config file name.
+    description: Config file name
     required: true
   PREFIX:
     description: Prefix
