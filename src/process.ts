@@ -5,7 +5,7 @@ import { getConfig } from '@technote-space/github-action-config-helper';
 import { getConfigFilename, getRelativePath, setEnv } from './utils/misc';
 
 export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<boolean> => {
-	const config = await getConfig(getConfigFilename(), octokit, context, getRelativePath());
+	const config = await getConfig(getConfigFilename(), octokit, context, {configPath: getRelativePath()});
 	if (false === config) {
 		logger.warn('The specified file [%s] does not exist or is invalid.', getConfigFilename());
 		return false;

@@ -21,7 +21,7 @@ inputs:
   RELATIVE_PATH:
     description: Relative path
     default: '.github'
-    required: true
+    required: false
 
 branding:
   icon: 'settings'
