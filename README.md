@@ -32,7 +32,6 @@ jobs:
     steps:
       - uses: technote-space/load-config-action@v1
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           CONFIG_FILENAME: config.yml
       - name: Dump
         run: |
