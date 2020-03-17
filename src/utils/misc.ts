@@ -11,3 +11,5 @@ export const getSuffix = (): string => getInput('SUFFIX');
 export const getEnvName = (name: string): string => `${getPrefix()}${name}${getSuffix()}`;
 
 export const setEnv = (name: string, value: string): void => exportVariable(getEnvName(name), value);
+
+export const getRef = (): string => getInput('REF');

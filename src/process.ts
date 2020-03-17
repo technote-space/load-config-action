@@ -2,10 +2,10 @@ import { Context } from '@actions/github/lib/context';
 import { Octokit } from '@octokit/rest';
 import { Logger } from '@technote-space/github-action-helper';
 import { getConfig } from '@technote-space/github-action-config-helper';
-import { getConfigFilename, getRelativePath, setEnv } from './utils/misc';
+import { getConfigFilename, getRelativePath, setEnv, getRef } from './utils/misc';
 
 export const execute = async(logger: Logger, octokit: Octokit, context: Context): Promise<void> => {
-	const config = await getConfig(getConfigFilename(), octokit, context, {configPath: getRelativePath()});
+	const config = await getConfig(getConfigFilename(), octokit, context, {configPath: getRelativePath(), ref: getRef()});
 
 	logger.startProcess('Target config:');
 	console.log(config);

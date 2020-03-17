@@ -22,6 +22,9 @@ inputs:
     description: Relative path
     default: '.github'
     required: false
+  REF:
+    description: The name of the commit/branch/tag
+    required: false
 
 branding:
   icon: 'settings'
