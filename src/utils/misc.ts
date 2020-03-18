@@ -13,3 +13,16 @@ export const getEnvName = (name: string): string => `${getPrefix()}${name}${getS
 export const setEnv = (name: string, value: string): void => exportVariable(getEnvName(name), value);
 
 export const getRef = (): string => getInput('REF');
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const stringify = (config: any): string => {
+	if (typeof config !== 'object') {
+		return config;
+	}
+
+	if (Array.isArray(config)) {
+		return config.map(stringify).join('\n');
+	}
+
+	return JSON.stringify(config);
+};
