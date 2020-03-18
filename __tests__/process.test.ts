@@ -80,8 +80,8 @@ describe('execute', () => {
 				},
 			}),
 			'::endgroup::',
-			'::set-env name=INPUT_test1::"test1"',
-			'::set-env name=INPUT_test2::["test1","test2"]',
+			'::set-env name=INPUT_test1::test1',
+			'::set-env name=INPUT_test2::test1%0Atest2',
 			'::set-env name=INPUT_test3::{"test4":"test5"}',
 		]);
 	});
@@ -113,8 +113,8 @@ describe('execute', () => {
 				},
 			}),
 			'::endgroup::',
-			'::set-env name=test1_SUFFIX::"test1"',
-			'::set-env name=test2_SUFFIX::["test1","test2"]',
+			'::set-env name=test1_SUFFIX::test1',
+			'::set-env name=test2_SUFFIX::test1%0Atest2',
 			'::set-env name=test3_SUFFIX::{"test4":"test5"}',
 		]);
 	});
