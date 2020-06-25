@@ -14,7 +14,7 @@ export const setEnv = (name: string, value: string): void => exportVariable(getE
 
 export const getRef = (): string => getInput('REF');
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
+// eslint-disable-next-line @typescript-eslint/no-explicit-any,@typescript-eslint/explicit-module-boundary-types
 export const stringify = (config: any): string => {
   if (typeof config !== 'object') {
     return config;
