@@ -748,13 +748,14 @@
     "@actions/core" "^1.2.4"
     "@actions/github" "^3.0.0"
 
-"@technote-space/github-action-config-helper@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@technote-space/github-action-config-helper/-/github-action-config-helper-2.0.0.tgz#775640971896a4ca63c82c25f9c1c6bce2187c63"
-  integrity sha512-COVOCqpOUmHrqGt8V5OyLsVS/xeSIUQ+NDrGBMRm1Ne7jkYzx1lPwV1vHkAy//J26EmHJReSqtMFqCI0G2qWrQ==
+"@technote-space/github-action-config-helper@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@technote-space/github-action-config-helper/-/github-action-config-helper-2.0.1.tgz#e3492d1187abb5b4d7283aa3ff5f573f00649962"
+  integrity sha512-elhC+rgOkhS/JhuMTx8FeaLd30yH/nQW12H+OVW53o3JInnBEu04xCG7wisD4n+W5irf60DBJc3EckCT2rw15Q==
   dependencies:
     "@actions/github" "^3.0.0"
     "@octokit/plugin-rest-endpoint-methods" "^4.0.0"
+    "@technote-space/github-action-helper" "^3.0.1"
     js-yaml "^3.14.0"
 
 "@technote-space/github-action-helper@^2.0.10":

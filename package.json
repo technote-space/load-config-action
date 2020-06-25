@@ -27,7 +27,7 @@
   "dependencies": {
     "@actions/core": "^1.2.4",
     "@actions/github": "^3.0.0",
-    "@technote-space/github-action-config-helper": "^2.0.0",
+    "@technote-space/github-action-config-helper": "^2.0.1",
     "@technote-space/github-action-helper": "^3.0.1"
   },
   "devDependencies": {
