@@ -1,6 +1,6 @@
 import {Context} from '@actions/github/lib/context';
-import {Octokit} from '@octokit/rest';
 import {Logger} from '@technote-space/github-action-helper';
+import {Octokit} from '@technote-space/github-action-helper/dist/types';
 import {getConfig} from '@technote-space/github-action-config-helper';
 import {getConfigFilename, getRelativePath, setEnv, getRef, stringify} from './utils/misc';
 
