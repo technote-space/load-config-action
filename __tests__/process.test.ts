@@ -26,7 +26,7 @@ describe('execute', () => {
     process.env.INPUT_REF             = 'refs/heads/master';
     const mockStdout                  = spyOnStdout();
     nock('https://api.github.com')
-      .get('/repos/hello/world/contents/.github/error.yml?ref=refs%2Fheads%2Fmaster')
+      .get('/repos/hello/world/contents/' + encodeURIComponent('.github/error.yml') + '?ref=' + encodeURIComponent('refs/heads/master'))
       .reply(200, getConfigFixture(fixturesDir, 'error.yml'));
 
     await execute(new Logger(), getOctokit(), generateContext({
@@ -40,12 +40,12 @@ describe('execute', () => {
         'reason': 'end of the stream or a document separator is expected',
         'mark': {
           'name': null,
-          'buffer': 'Test1\nTest2:\n\u0000',
-          'position': 11,
+          'buffer': '  Test1\n  Test2:\n\u0000',
+          'position': 15,
           'line': 1,
-          'column': 5,
+          'column': 7,
         },
-        'message': 'end of the stream or a document separator is expected at line 2, column 6:\n    Test2:\n         ^',
+        'message': 'end of the stream or a document separator is expected at line 2, column 8:\n      Test2:\n           ^',
       }, '__error__'),
       '::group::Target config:',
       getLogStdout({}),
@@ -59,7 +59,7 @@ describe('execute', () => {
     process.env.INPUT_REF             = 'refs/pull/123/merge';
     const mockStdout                  = spyOnStdout();
     nock('https://api.github.com')
-      .get('/repos/hello/world/contents/.github/config.yml?ref=refs%2Fpull%2F123%2Fmerge')
+      .get('/repos/hello/world/contents/' + encodeURIComponent('.github/config.yml') + '?ref=' + encodeURIComponent('refs/pull/123/merge'))
       .reply(200, getConfigFixture(fixturesDir, 'config.yml'));
 
     await execute(new Logger(), getOctokit(), generateContext({
@@ -92,7 +92,7 @@ describe('execute', () => {
     process.env.INPUT_REF             = 'v1.2.3';
     const mockStdout                  = spyOnStdout();
     nock('https://api.github.com')
-      .get('/repos/hello/world/contents/.github/config.json?ref=v1.2.3')
+      .get('/repos/hello/world/contents/' + encodeURIComponent('.github/config.json') + '?ref=' + encodeURIComponent('v1.2.3'))
       .reply(200, getConfigFixture(fixturesDir, 'config.json'));
 
     await execute(new Logger(), getOctokit(), generateContext({
