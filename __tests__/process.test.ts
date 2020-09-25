@@ -3,10 +3,12 @@ import nock from 'nock';
 import {resolve} from 'path';
 import {
   testEnv,
-  spyOnStdout,
   getOctokit,
   generateContext,
+  spyOnStdout,
   stdoutCalledWith,
+  spyOnExportVariable,
+  exportVariableCalledWith,
   disableNetConnect,
   getConfigFixture,
   getLogStdout,
@@ -58,6 +60,7 @@ describe('execute', () => {
     process.env.INPUT_PREFIX          = 'INPUT_';
     process.env.INPUT_REF             = 'refs/pull/123/merge';
     const mockStdout                  = spyOnStdout();
+    const mockEnv                     = spyOnExportVariable();
     nock('https://api.github.com')
       .get('/repos/hello/world/contents/' + encodeURIComponent('.github/config.yml') + '?ref=' + encodeURIComponent('refs/pull/123/merge'))
       .reply(200, getConfigFixture(fixturesDir, 'config.yml'));
@@ -80,9 +83,11 @@ describe('execute', () => {
         },
       }),
       '::endgroup::',
-      '::set-env name=INPUT_test1::test1',
-      '::set-env name=INPUT_test2::test1%0Atest2',
-      '::set-env name=INPUT_test3::{"test4":"test5"}',
+    ]);
+    exportVariableCalledWith(mockEnv, [
+      {name: 'INPUT_test1', val: 'test1'},
+      {name: 'INPUT_test2', val: 'test1\ntest2'},
+      {name: 'INPUT_test3', val: '{"test4":"test5"}'},
     ]);
   });
 
@@ -91,6 +96,7 @@ describe('execute', () => {
     process.env.INPUT_SUFFIX          = '_SUFFIX';
     process.env.INPUT_REF             = 'v1.2.3';
     const mockStdout                  = spyOnStdout();
+    const mockEnv                     = spyOnExportVariable();
     nock('https://api.github.com')
       .get('/repos/hello/world/contents/' + encodeURIComponent('.github/config.json') + '?ref=' + encodeURIComponent('v1.2.3'))
       .reply(200, getConfigFixture(fixturesDir, 'config.json'));
@@ -113,9 +119,11 @@ describe('execute', () => {
         },
       }),
       '::endgroup::',
-      '::set-env name=test1_SUFFIX::test1',
-      '::set-env name=test2_SUFFIX::test1%0Atest2',
-      '::set-env name=test3_SUFFIX::{"test4":"test5"}',
+    ]);
+    exportVariableCalledWith(mockEnv, [
+      {name: 'test1_SUFFIX', val: 'test1'},
+      {name: 'test2_SUFFIX', val: 'test1\ntest2'},
+      {name: 'test3_SUFFIX', val: '{"test4":"test5"}'},
     ]);
   });
 });

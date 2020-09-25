@@ -1,5 +1,9 @@
 import {resolve} from 'path';
-import {testEnv, spyOnStdout, stdoutCalledWith} from '@technote-space/github-action-test-helper';
+import {
+  testEnv,
+  spyOnExportVariable,
+  exportVariableCalledWith,
+} from '@technote-space/github-action-test-helper';
 import {getConfigFilename, getRelativePath, setEnv} from '../../src/utils/misc';
 
 const rootDir = resolve(__dirname, '../..');
@@ -33,12 +37,12 @@ describe('getRelativePath', () => {
 
 describe('setEnv', () => {
   it('should run set env command', () => {
-    const mockStdout = spyOnStdout();
+    const mockEnv = spyOnExportVariable();
 
     setEnv('test-name', 'test-value');
 
-    stdoutCalledWith(mockStdout, [
-      '::set-env name=test-name::test-value',
+    exportVariableCalledWith(mockEnv, [
+      {name: 'test-name', val: 'test-value'},
     ]);
   });
 });
