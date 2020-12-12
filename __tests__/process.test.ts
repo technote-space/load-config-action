@@ -56,14 +56,16 @@ describe('execute', () => {
   });
 
   it('should set env by yaml', async() => {
-    process.env.INPUT_CONFIG_FILENAME = 'config.yml';
+    process.env.INPUT_CONFIG_FILENAME = 'config.yml, 404.yml';
     process.env.INPUT_PREFIX          = 'INPUT_';
     process.env.INPUT_REF             = 'refs/pull/123/merge';
     const mockStdout                  = spyOnStdout();
     const mockEnv                     = spyOnExportVariable();
     nock('https://api.github.com')
       .get('/repos/hello/world/contents/' + encodeURIComponent('.github/config.yml') + '?ref=' + encodeURIComponent('refs/pull/123/merge'))
-      .reply(200, getConfigFixture(fixturesDir, 'config.yml'));
+      .reply(200, getConfigFixture(fixturesDir, 'config.yml'))
+      .get('/repos/hello/world/contents/' + encodeURIComponent('.github/404.yml') + '?ref=' + encodeURIComponent('refs/pull/123/merge'))
+      .reply(404);
 
     await execute(new Logger(), getOctokit(), generateContext({
       owner: 'hello',
@@ -71,6 +73,7 @@ describe('execute', () => {
     }));
 
     stdoutCalledWith(mockStdout, [
+      '::warning::File not found [404.yml]',
       '::group::Target config:',
       getLogStdout({
         'test1': 'test1',
@@ -92,14 +95,17 @@ describe('execute', () => {
   });
 
   it('should set env by json', async() => {
-    process.env.INPUT_CONFIG_FILENAME = 'config.json';
+    process.env.INPUT_CONFIG_FILENAME = 'config.json, 404.json';
     process.env.INPUT_SUFFIX          = '_SUFFIX';
     process.env.INPUT_REF             = 'v1.2.3';
+    process.env.INPUT_IGNORE_WARNING  = 'true';
     const mockStdout                  = spyOnStdout();
     const mockEnv                     = spyOnExportVariable();
     nock('https://api.github.com')
       .get('/repos/hello/world/contents/' + encodeURIComponent('.github/config.json') + '?ref=' + encodeURIComponent('v1.2.3'))
-      .reply(200, getConfigFixture(fixturesDir, 'config.json'));
+      .reply(200, getConfigFixture(fixturesDir, 'config.json'))
+      .get('/repos/hello/world/contents/' + encodeURIComponent('.github/404.json') + '?ref=' + encodeURIComponent('v1.2.3'))
+      .reply(404);
 
     await execute(new Logger(), getOctokit(), generateContext({
       owner: 'hello',

@@ -4,7 +4,7 @@ import {
   spyOnExportVariable,
   exportVariableCalledWith,
 } from '@technote-space/github-action-test-helper';
-import {getConfigFilenames, getRelativePath, setEnv} from '../../src/utils/misc';
+import {getConfigFilenames, getRelativePath, setEnv, isIgnoreWarning} from '../../src/utils/misc';
 
 const rootDir = resolve(__dirname, '../..');
 
@@ -50,5 +50,19 @@ describe('setEnv', () => {
     exportVariableCalledWith(mockEnv, [
       {name: 'test-name', val: 'test-value'},
     ]);
+  });
+});
+
+describe('isIgnoreWarning', () => {
+  testEnv(rootDir);
+
+  it('should return false', () => {
+    expect(isIgnoreWarning()).toBe(false);
+  });
+
+  it('should return true', () => {
+    process.env.INPUT_IGNORE_WARNING = '1';
+
+    expect(isIgnoreWarning()).toBe(true);
   });
 });
