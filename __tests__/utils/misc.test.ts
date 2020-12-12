@@ -4,21 +4,27 @@ import {
   spyOnExportVariable,
   exportVariableCalledWith,
 } from '@technote-space/github-action-test-helper';
-import {getConfigFilename, getRelativePath, setEnv} from '../../src/utils/misc';
+import {getConfigFilenames, getRelativePath, setEnv} from '../../src/utils/misc';
 
 const rootDir = resolve(__dirname, '../..');
 
-describe('getConfigFilename', () => {
+describe('getConfigFilenames', () => {
   testEnv(rootDir);
 
   it('should throw error', () => {
-    expect(() => getConfigFilename()).toThrow('');
+    expect(() => getConfigFilenames()).toThrow('');
   });
 
   it('should get config filename', () => {
     process.env.INPUT_CONFIG_FILENAME = 'test.yml';
 
-    expect(getConfigFilename()).toBe('test.yml');
+    expect(getConfigFilenames()).toEqual(['test.yml']);
+  });
+
+  it('should get config filenames', () => {
+    process.env.INPUT_CONFIG_FILENAME = 'test1.yml, test2.yml\ntest3.yml';
+
+    expect(getConfigFilenames()).toEqual(['test1.yml', 'test2.yml', 'test3.yml']);
   });
 });
 

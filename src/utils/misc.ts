@@ -1,6 +1,7 @@
 import {getInput, exportVariable} from '@actions/core' ;
+import {Utils} from '@technote-space/github-action-helper';
 
-export const getConfigFilename = (): string => getInput('CONFIG_FILENAME', {required: true});
+export const getConfigFilenames = (): Array<string> => Utils.getArrayInput('CONFIG_FILENAME', true);
 
 export const getRelativePath = (): string => getInput('RELATIVE_PATH', {required: true});
 
