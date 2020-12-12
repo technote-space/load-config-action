@@ -4,21 +4,27 @@ import {
   spyOnExportVariable,
   exportVariableCalledWith,
 } from '@technote-space/github-action-test-helper';
-import {getConfigFilename, getRelativePath, setEnv} from '../../src/utils/misc';
+import {getConfigFilenames, getRelativePath, setEnv, isIgnoreWarning} from '../../src/utils/misc';
 
 const rootDir = resolve(__dirname, '../..');
 
-describe('getConfigFilename', () => {
+describe('getConfigFilenames', () => {
   testEnv(rootDir);
 
   it('should throw error', () => {
-    expect(() => getConfigFilename()).toThrow('');
+    expect(() => getConfigFilenames()).toThrow('');
   });
 
-  it('should get config file name', () => {
+  it('should get config filename', () => {
     process.env.INPUT_CONFIG_FILENAME = 'test.yml';
 
-    expect(getConfigFilename()).toBe('test.yml');
+    expect(getConfigFilenames()).toEqual(['test.yml']);
+  });
+
+  it('should get config filenames', () => {
+    process.env.INPUT_CONFIG_FILENAME = 'test1.yml, test2.yml\ntest3.yml';
+
+    expect(getConfigFilenames()).toEqual(['test1.yml', 'test2.yml', 'test3.yml']);
   });
 });
 
@@ -44,5 +50,19 @@ describe('setEnv', () => {
     exportVariableCalledWith(mockEnv, [
       {name: 'test-name', val: 'test-value'},
     ]);
+  });
+});
+
+describe('isIgnoreWarning', () => {
+  testEnv(rootDir);
+
+  it('should return false', () => {
+    expect(isIgnoreWarning()).toBe(false);
+  });
+
+  it('should return true', () => {
+    process.env.INPUT_IGNORE_WARNING = '1';
+
+    expect(isIgnoreWarning()).toBe(true);
   });
 });
