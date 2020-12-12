@@ -15,7 +15,7 @@ describe('getConfigFilename', () => {
     expect(() => getConfigFilename()).toThrow('');
   });
 
-  it('should get config file name', () => {
+  it('should get config filename', () => {
     process.env.INPUT_CONFIG_FILENAME = 'test.yml';
 
     expect(getConfigFilename()).toBe('test.yml');

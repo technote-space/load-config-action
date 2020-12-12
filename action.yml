@@ -10,7 +10,7 @@ inputs:
     default: ${{ github.token }}
     required: true
   CONFIG_FILENAME:
-    description: Config file name
+    description: Config filename
     required: true
   PREFIX:
     description: Prefix
