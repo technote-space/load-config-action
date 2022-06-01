@@ -1,9 +1,9 @@
-import {getInput, exportVariable} from '@actions/core' ;
-import {Utils} from '@technote-space/github-action-helper';
+import { getInput, exportVariable } from '@actions/core' ;
+import { Utils } from '@technote-space/github-action-helper';
 
 export const getConfigFilenames = (): Array<string> => Utils.getArrayInput('CONFIG_FILENAME', true);
 
-export const getRelativePath = (): string => getInput('RELATIVE_PATH', {required: true});
+export const getRelativePath = (): string => getInput('RELATIVE_PATH', { required: true });
 
 export const getPrefix = (): string => getInput('PREFIX');
 

@@ -1,6 +1,7 @@
 /* eslint-disable no-magic-numbers */
+import { describe, it } from 'vitest';
 import nock from 'nock';
-import {resolve} from 'path';
+import { resolve } from 'path';
 import {
   testEnv,
   getOctokit,
@@ -13,8 +14,8 @@ import {
   getConfigFixture,
   getLogStdout,
 } from '@technote-space/github-action-test-helper';
-import {Logger} from '@technote-space/github-action-log-helper';
-import {execute} from '../src/process';
+import { Logger } from '@technote-space/github-action-log-helper';
+import { execute } from '../src/process';
 
 const rootDir     = resolve(__dirname, '..');
 const fixturesDir = resolve(__dirname, 'fixtures');
@@ -89,9 +90,9 @@ describe('execute', () => {
       '::endgroup::',
     ]);
     exportVariableCalledWith(mockEnv, [
-      {name: 'INPUT_test1', val: 'test1'},
-      {name: 'INPUT_test2', val: 'test1\ntest2'},
-      {name: 'INPUT_test3', val: '{"test4":"test5"}'},
+      { name: 'INPUT_test1', val: 'test1' },
+      { name: 'INPUT_test2', val: 'test1\ntest2' },
+      { name: 'INPUT_test3', val: '{"test4":"test5"}' },
     ]);
   });
 
@@ -128,9 +129,9 @@ describe('execute', () => {
       '::endgroup::',
     ]);
     exportVariableCalledWith(mockEnv, [
-      {name: 'test1_SUFFIX', val: 'test1'},
-      {name: 'test2_SUFFIX', val: 'test1\ntest2'},
-      {name: 'test3_SUFFIX', val: '{"test4":"test5"}'},
+      { name: 'test1_SUFFIX', val: 'test1' },
+      { name: 'test2_SUFFIX', val: 'test1\ntest2' },
+      { name: 'test3_SUFFIX', val: '{"test4":"test5"}' },
     ]);
   });
 });
