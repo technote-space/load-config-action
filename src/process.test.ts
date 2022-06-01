@@ -14,6 +14,8 @@ import {
   getLogStdout,
 } from '@technote-space/github-action-test-helper';
 import nock from 'nock';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { describe, it } from 'vitest';
 import { execute } from './process';
 

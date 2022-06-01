@@ -4,6 +4,8 @@ import {
   spyOnExportVariable,
   exportVariableCalledWith,
 } from '@technote-space/github-action-test-helper';
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import { describe, expect, it } from 'vitest';
 import { getConfigFilenames, getRelativePath, setEnv, isIgnoreWarning } from './misc';
 
