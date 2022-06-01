@@ -1,10 +1,10 @@
-import { describe, expect, it } from 'vitest';
 import { resolve } from 'path';
 import {
   testEnv,
   spyOnExportVariable,
   exportVariableCalledWith,
 } from '@technote-space/github-action-test-helper';
+import { describe, expect, it } from 'vitest';
 import { getConfigFilenames, getRelativePath, setEnv, isIgnoreWarning } from './misc';
 
 const rootDir = resolve(__dirname, '../..');
