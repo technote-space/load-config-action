@@ -1,10 +1,11 @@
-import {resolve} from 'path';
+import { resolve } from 'path';
 import {
   testEnv,
   spyOnExportVariable,
   exportVariableCalledWith,
 } from '@technote-space/github-action-test-helper';
-import {getConfigFilenames, getRelativePath, setEnv, isIgnoreWarning} from '../../src/utils/misc';
+import { describe, expect, it } from 'vitest';
+import { getConfigFilenames, getRelativePath, setEnv, isIgnoreWarning } from './misc';
 
 const rootDir = resolve(__dirname, '../..');
 
@@ -48,7 +49,7 @@ describe('setEnv', () => {
     setEnv('test-name', 'test-value');
 
     exportVariableCalledWith(mockEnv, [
-      {name: 'test-name', val: 'test-value'},
+      { name: 'test-name', val: 'test-value' },
     ]);
   });
 });
