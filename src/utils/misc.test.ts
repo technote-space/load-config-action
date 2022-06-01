@@ -5,7 +5,7 @@ import {
   spyOnExportVariable,
   exportVariableCalledWith,
 } from '@technote-space/github-action-test-helper';
-import { getConfigFilenames, getRelativePath, setEnv, isIgnoreWarning } from '../../src/utils/misc';
+import { getConfigFilenames, getRelativePath, setEnv, isIgnoreWarning } from './misc';
 
 const rootDir = resolve(__dirname, '../..');
 

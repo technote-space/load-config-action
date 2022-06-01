@@ -15,7 +15,7 @@ import {
   getLogStdout,
 } from '@technote-space/github-action-test-helper';
 import { Logger } from '@technote-space/github-action-log-helper';
-import { execute } from '../src/process';
+import { execute } from './process';
 
 const rootDir     = resolve(__dirname, '..');
 const fixturesDir = resolve(__dirname, 'fixtures');
