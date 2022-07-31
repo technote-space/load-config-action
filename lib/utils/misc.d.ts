@@ -1,0 +1,9 @@
+export declare const getConfigFilenames: () => Array<string>;
+export declare const getRelativePath: () => string;
+export declare const getPrefix: () => string;
+export declare const getSuffix: () => string;
+export declare const getEnvName: (name: string) => string;
+export declare const setEnv: (name: string, value: string) => void;
+export declare const getRef: () => string;
+export declare const isIgnoreWarning: () => boolean;
+export declare const stringify: (config: any) => string;
